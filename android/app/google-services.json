@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "414067368114",
+    "project_id": "telmed-cb6b4",
+    "storage_bucket": "telmed-cb6b4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:414067368114:android:1060ce2e889ecd9e9269ab",
+        "android_client_info": {
+          "package_name": "com.telmed"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQ7_-e5FhxVZb0BPVCpu6CpvhZ7EHGycw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
