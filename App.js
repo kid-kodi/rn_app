@@ -1,16 +1,17 @@
-import React from 'react'
-import { NavigationContainer } from '@react-navigation/native';
-import OnboardNavigator from './src/navigations/OnboardNavigator';
+import React from 'react';
 
+import UserProvider from './src/contexts/UserProvider';
+import ApiProvider from './src/contexts/ApiProvider';
+import RootNavigator from './src/navigations/RootNavigator';
 import FlashMessage from 'react-native-flash-message';
 
-
 export default function App() {
-
   return (
-    <NavigationContainer>
-      <OnboardNavigator />
-      <FlashMessage position="top" /> 
-    </NavigationContainer>
-  )
+    <ApiProvider>
+      <UserProvider>
+        <RootNavigator />
+        <FlashMessage position="top" />
+      </UserProvider>
+    </ApiProvider>
+  );
 }

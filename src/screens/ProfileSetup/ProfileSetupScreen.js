@@ -7,6 +7,7 @@ import {
   View,
 } from 'react-native';
 import React, {useState} from 'react';
+import ImagePicker from 'react-native-image-crop-picker';
 import Screen from '../../components/Screen';
 import Header from '../../components/Header';
 import MyText from '../../components/MyText';
@@ -16,21 +17,57 @@ import {
   textScale,
 } from '../../styles/ResponsiveSize';
 import {useTranslation} from 'react-i18next';
-import {useNavigation} from '@react-navigation/native';
-import Colors from '../../constants/Colors';
+
 import FontFamily from '../../constants/FontFamily';
 import RoundImage from '../../components/RoundImage';
 import MyTextInput from '../../components/MyTextInput';
 import MyButton from '../../components/MyButton';
 
+import {useFormik} from 'formik';
+import * as Yup from 'yup';
+import {getData, showError} from '../../helpers/Utils';
+import { useUser } from '../../contexts/UserProvider';
+
+const ProfileSetupSchema = Yup.object().shape({
+  fullName: Yup.string().required('Entrer votre nom requis'),
+});
+
 export default function ProfileSetupScreen() {
-  const navigation = useNavigation();
+  const {editProfile, uploadPhoto} = useUser();
   const {t} = useTranslation();
 
   const [image, setImage] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const selectPhoto = async () => {};
-  const onDone = async () => {};
+  const selectPhoto = async () => {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 400,
+      cropping: true,
+    }).then(async image => {
+      setIsLoading(true);
+      const response = await uploadPhoto(image);
+      console.log(response)
+      setImage(response.data.name);
+      setIsLoading(false);
+    });
+  };
+
+  const formik = useFormik({
+    initialValues: {
+      profilePicture: '',
+      fullName: '',
+    },
+    validationSchema: ProfileSetupSchema,
+    onSubmit: async values => {
+      values.profilePicture = image;
+      values.isAccounSet = true;
+      const response = await editProfile(values);
+      if (!response.success) {
+        showError(response.error.message);
+      }
+    },
+  });
 
   return (
     <Screen>
@@ -56,7 +93,12 @@ export default function ProfileSetupScreen() {
                 />
               </View>
 
-              <MyTextInput placeholder="Votre nom (pour des notifications)" />
+              <MyTextInput
+                placeholder="Votre nom (pour des notifications)"
+                value={formik.values.fullName}
+                errorText={formik.errors.fullName}
+                onChangeText={formik.handleChange('fullName')}
+              />
             </View>
 
             <View
@@ -65,7 +107,12 @@ export default function ProfileSetupScreen() {
                 justifyContent: 'flex-end',
                 marginBottom: moderateScaleVertical(16),
               }}>
-              <MyButton text={t('DONE_TXT')} onPress={onDone} />
+              <MyButton
+                text={t('DONE_TXT')}
+                disabled={formik.errors.fullName || formik.isSubmitting}
+                onPress={formik.handleSubmit}
+                isLoading={formik.isSubmitting}
+              />
             </View>
           </View>
         </TouchableWithoutFeedback>

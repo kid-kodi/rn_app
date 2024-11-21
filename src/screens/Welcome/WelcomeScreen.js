@@ -34,7 +34,7 @@ export default function WelcomeScreen({navigation}) {
         </Text>
 
         <TouchableOpacity
-          onPress={() => navigation.navigate(NavigationString.COUNTRY_INPUT_SCREEN)}
+          onPress={() => navigation.navigate(NavigationString.SIGNUP_SCREEN)}
           activeOpacity={0.7}>
           <Text style={styles.agreeStyle}>{t('AGREE_AND_CONTINUE')}</Text>
         </TouchableOpacity>

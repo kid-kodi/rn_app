@@ -4,6 +4,7 @@ import {Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {moderateScale, moderateScaleVertical, textScale} from '../styles/ResponsiveSize';
 import Colors from '../constants/Colors';
 import FontFamily from '../constants/FontFamily';
+import {BASE_API_URL} from '@env';
 
 // create a component
 const RoundImage = ({
@@ -13,7 +14,7 @@ const RoundImage = ({
   isStatic = false,
   imageStyle,
 }) => {
-  let compImg = isStatic ? image : {uri: image};
+  let compImg = isStatic ? image : {uri: `${BASE_API_URL}/image/${image}`};
   return (
     <TouchableOpacity
       activeOpacity={0.7}
@@ -39,7 +40,7 @@ const RoundImage = ({
           source={compImg}
         />
       ) : (
-        <Text style={styles.textStyle}>add photo</Text>
+        <Text style={styles.textStyle}>photo</Text>
       )}
     </TouchableOpacity>
   );

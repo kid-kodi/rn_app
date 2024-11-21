@@ -17,7 +17,7 @@ export default function MyTextInput({
   onPressSecure = () => {},
   inputStyle = {},
   textStyle = {},
-  placeholderTextColor = Colors.whiteColorOpacity70,
+  placeholderTextColor = Colors.blackOpacity50,
   ...props
 }) {
   const lang = '';
@@ -61,22 +61,25 @@ const styles = StyleSheet.create({
   inputStyle: {
     height: moderateScale(52),
     borderRadius: moderateScale(8),
+    borderWidth: moderateScale(1),
+    borderColor: Colors.blackOpacity20,
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: moderateScale(16),
     alignItems: 'center',
-    backgroundColor: Colors.gray7,
-    marginBottom: moderateScaleVertical(16),
+    backgroundColor: Colors.whiteColor,
+    marginBottom: moderateScaleVertical(4),
   },
   textStyle: {
     fontSize: textScale(14),
     fontFamily: FontFamily.regular,
     flex: 1,
-    color: Colors.whiteColor,
+    color: Colors.blackColor,
   },
   errorTextStyle: {
     fontSize: textScale(14),
     fontFamily: FontFamily.regular,
     color: Colors.redColor,
+    marginBottom: moderateScaleVertical(16),
   },
 });

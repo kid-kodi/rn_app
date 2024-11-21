@@ -5,13 +5,17 @@ import Screen from '../../components/Screen';
 import {height, moderateScale, width} from '../../styles/ResponsiveSize';
 import ImagePath from '../../constants/ImagePath';
 import NavigationString from '../../constants/NavigationString';
+import {useUser} from '../../contexts/UserProvider';
 
 export default function SplashScreen() {
   const navigation = useNavigation();
+  const {user} = useUser();
 
   useEffect(() => {
     setTimeout(function () {
-      navigation.navigate(NavigationString.WELCOME_SCREEN);
+      if (!user) {
+        navigation.navigate(NavigationString.WELCOME_SCREEN);
+      }
     }, 5000);
   }, []);
 

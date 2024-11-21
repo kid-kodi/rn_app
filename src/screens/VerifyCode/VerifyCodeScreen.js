@@ -21,10 +21,12 @@ import Colors from '../../constants/Colors';
 import MyButton from '../../components/MyButton';
 import FontFamily from '../../constants/FontFamily';
 import NavigationString from '../../constants/NavigationString';
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
+import {showError, storeData} from '../../helpers/Utils';
+import { useUser } from '../../contexts/UserProvider';
 
 export default function VerifyCodeScreen({navigation, route}) {
-  // const {otpActivation} = useUser();
+  const {otpActivation} = useUser();
   const {t} = useTranslation();
 
   const [timer, setTimer] = useState(59);
@@ -54,20 +56,22 @@ export default function VerifyCodeScreen({navigation, route}) {
   };
 
   const onDone = async () => {
-    navigation.navigate(NavigationString.PROFILE_SETUP_SCREEN)
-    // const {success} = await otpActivation({
-    //   activation_token: activationToken,
-    //   activation_code: otpInput,
-    //   isSignin,
-    // });
-    // if (success) {
-    //   showSucess(`Bienvenue`);
-    // }
+    const response = await otpActivation({
+      activation_token: activationToken,
+      activation_code: otpInput,
+    });
+    if (response && response.success) {
+      await storeData('user', response.token);
+      navigation.navigate(NavigationString.PROFILE_SETUP_SCREEN);
+    } else {
+      console.log(response);
+      showError(response.error.message);
+    }
   };
 
   return (
     <Screen>
-      <Header leftText={t('VERIFY_CODE_SCREEN_TITLE')}/>
+      <Header leftText={t('VERIFY_CODE_SCREEN_TITLE')} />
 
       <KeyboardAvoidingView
         style={{flex: 1, margin: moderateScale(16)}}
@@ -77,7 +81,7 @@ export default function VerifyCodeScreen({navigation, route}) {
             <View style={{flex: 0.8}}>
               <MyText
                 style={styles.headerStyle}
-                text={t("ENTER_THE_FOUR_DIGIT") + ` xyz@gmail.com`}
+                text={t('ENTER_THE_FOUR_DIGIT') + ` xyz@gmail.com`}
               />
               <MyText
                 onPress={() => navigation.goBack()}
@@ -86,7 +90,7 @@ export default function VerifyCodeScreen({navigation, route}) {
                   color: Colors.blueColor,
                   fontFamily: FontFamily.semiBold,
                 }}
-                text={t("EDIT_MY_EMAIL")}
+                text={t('EDIT_MY_EMAIL')}
               />
 
               <OTPTextView
@@ -114,18 +118,18 @@ export default function VerifyCodeScreen({navigation, route}) {
                     ...styles.descStyle,
                     marginBottom: 12,
                   }}
-                  text={t("RESEND_CODE") + " " + t("RESEND_CODE_IN")}>
+                  text={t('RESEND_CODE') + ' ' + t('RESEND_CODE_IN')}>
                   <Text>{timer}</Text>
                 </MyText>
               ) : (
                 <MyText
                   onPress={onResendCode}
                   style={styles.resendCodeStyle}
-                  text={t("RESEND_CODE")}
+                  text={t('RESEND_CODE')}
                 />
               )}
               <MyButton
-                text={t("DONE_TXT")}
+                text={t('DONE_TXT')}
                 onPress={onDone}
                 isLoading={isLoading}
               />
