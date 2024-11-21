@@ -48,7 +48,7 @@ root/
 │   │   ├── theme.ts
 │   │   ├── spacing.ts
 │   │   └── ...
-│   ├── utils/             # Utility/helper functions
+│   ├── helpers/             # Utility/helper functions
 │   │   ├── debounce.ts
 │   │   ├── formatDate.ts
 │   │   └── ...
@@ -101,3 +101,5 @@ Scalability: Easy to add new features or modules.
 Reusability: Clear separation between reusable components and specific screens.
 Maintainability: Each folder has a single responsibility.
 Readability: The structure mirrors the flow of a React Native app.
+
+We will use textflow for sms api on node
