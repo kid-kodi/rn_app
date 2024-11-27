@@ -5,13 +5,11 @@ import Colors from '../constants/Colors';
 import {textScale} from '../styles/ResponsiveSize';
 
 export default function MyText({text = '', style = {}, children, ...props}) {
-  const selectedTheme = '';
-
   return (
     <Text
       style={{
         ...styles.textStyle,
-        color: selectedTheme == 'dark' ? Colors.whiteColor : Colors.blackColor,
+        color: Colors.blackColor,
         ...style,
       }}
       {...props}>

@@ -3,14 +3,15 @@ import {Image, StyleSheet} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import ImagePath from '../constants/ImagePath';
 import {BASE_API_URL} from '@env';
+import Colors from '../constants/Colors';
 
 export default function MyImage({url, imageStyle = {}}) {
-  
+
   const source = url
     ? {uri: `${BASE_API_URL}/image/${url}`}
     : ImagePath.icDefaultProfile;
 
-    console.log(source)
+   
   return (
     <Image
       style={{...styles.imageStyle, ...imageStyle}}
@@ -31,5 +32,7 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 50,
+    borderWidth:1,
+    borderColor:Colors.gray7
   },
 });

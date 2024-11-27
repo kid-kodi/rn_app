@@ -1,22 +1,23 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, View} from 'react-native';
 import React, {useEffect} from 'react';
-import {useNavigation} from '@react-navigation/native';
 import Screen from '../../components/Screen';
 import {height, moderateScale, width} from '../../styles/ResponsiveSize';
 import ImagePath from '../../constants/ImagePath';
-import NavigationString from '../../constants/NavigationString';
 import {useUser} from '../../contexts/UserProvider';
+import { useNavigation } from '@react-navigation/native';
+import NavigationString from '../../constants/NavigationString';
 
 export default function SplashScreen() {
   const navigation = useNavigation();
-  const {user} = useUser();
+  const {autoLogin} = useUser();
 
   useEffect(() => {
-    setTimeout(function () {
-      if (!user) {
-        navigation.navigate(NavigationString.WELCOME_SCREEN);
-      }
-    }, 5000);
+    (async () => {
+      const response = await autoLogin();
+      // if(!response){
+      //   navigation.navigate(NavigationString.INITIAL_SCREEN)
+      // }
+    })();
   }, []);
 
   return (

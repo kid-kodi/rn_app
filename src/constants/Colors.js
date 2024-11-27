@@ -1,5 +1,5 @@
 export default {
-    themeColor: '#2E2E2E',
+    themeColor: '#4052d6',
     loaderColor: '#BB1DD8',
     lighPink:'#FA2DFAC6',
     grayColor:"#707070",

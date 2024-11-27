@@ -10,6 +10,7 @@ const Stack = createNativeStackNavigator();
 
 export default function RootNavigator() {
   const {user} = useUser();
+  
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>

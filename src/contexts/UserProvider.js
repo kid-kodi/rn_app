@@ -2,6 +2,8 @@ import {createContext, useContext, useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useApi} from './ApiProvider';
 import {getData, showError, storeData} from '../helpers/Utils';
+import queryString from 'query-string';
+import {useSocket} from './SocketProvider';
 
 export const UserContext = createContext();
 
@@ -10,6 +12,7 @@ export default function UserProvider({children}) {
   const [isAuth, setIsAuth] = useState(false);
   const [isAccountSet, setIsAccountSet] = useState(false);
 
+  const socket = useSocket();
   const api = useApi();
 
   const signup = async data => {
@@ -52,6 +55,13 @@ export default function UserProvider({children}) {
   const login = async data => {
     try {
       const response = await api.post(`/api/auth/login`, data);
+      if (response.success) {
+        setIsAuth(true);
+        setUser(response.user);
+        setIsAccountSet(response.user.isAccountSet);
+        socket.initialzeSocket(response.user._id);
+        await storeData('user', response.token);
+      }
       return response;
     } catch (error) {
       showError(error.message);
@@ -63,6 +73,7 @@ export default function UserProvider({children}) {
     setIsAuth(false);
     setUser(null);
     setIsAccountSet(false);
+    socket.emit('leave_chat', user._id);
   };
 
   const autoLogin = async () => {
@@ -70,10 +81,14 @@ export default function UserProvider({children}) {
       const response = await api.get(`/api/auth/me`);
       if (response.success) {
         setIsAuth(true);
-        setUser(response.data);
-        setIsAccountSet(response.data.isAccountSet);
+        setUser(response.user);
+        setIsAccountSet(response.user.isAccountSet);
+        socket.initialzeSocket(response.user._id);
       }
     } catch (error) {
+      setIsAuth(false);
+      setUser(null);
+      setIsAccountSet(false);
       showError(error.message);
     }
   };
@@ -106,22 +121,33 @@ export default function UserProvider({children}) {
     }
   };
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await api.get(`/api/auth/me`);
-        if (response.success) {
-          setIsAuth(true);
-          setUser(response.user);
-          setIsAccountSet(response.user.isAccountSet);
-        }
-      } catch (error) {
-        setIsAuth(false);
-        setUser(null);
-        setIsAccountSet(false);
-      }
-    })();
-  }, []);
+  const searchUsers = async query => {
+    try {
+      const parser = queryString.stringify(query);
+      const response = await api.get(`/api/users/search?${parser}`, null);
+      return response;
+    } catch (error) {
+      showError(error.message);
+    }
+  };
+
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       const response = await api.get(`/api/auth/me`);
+  //       console.log(response)
+  //       if (response.success) {
+  //         setIsAuth(true);
+  //         setUser(response.user);
+  //         setIsAccountSet(response.user.isAccountSet);
+  //       }
+  //     } catch (error) {
+  //       setIsAuth(false);
+  //       setUser(null);
+  //       setIsAccountSet(false);
+  //     }
+  //   })();
+  // }, []);
 
   return (
     <UserContext.Provider
@@ -133,10 +159,10 @@ export default function UserProvider({children}) {
         otpActivation,
         uploadPhoto,
         editProfile,
-
         login,
         logout,
         user,
+        searchUsers,
       }}>
       {children}
     </UserContext.Provider>

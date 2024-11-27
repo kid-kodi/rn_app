@@ -28,9 +28,9 @@ export default function TabNavigator() {
         options={{
             tabBarIcon: ({color, size, focused}) =>
               focused ? (
-                <Icon name="chatbubble" size={35} color={color} />
+                <Icon name="chatbubble" size={size} color={color} />
               ) : (
-                <Icon name="chatbubble-outline" size={35} color={color} />
+                <Icon name="chatbubble-outline" size={size} color={color} />
               ),
           }}
       />
@@ -40,9 +40,9 @@ export default function TabNavigator() {
         options={{
           tabBarIcon: ({color, size, focused}) =>
             focused ? (
-              <Icon name="people" size={35} color={color} />
+              <Icon name="people" size={size} color={color} />
             ) : (
-              <Icon name="people-outline" size={35} color={color} />
+              <Icon name="people-outline" size={size} color={color} />
             ),
         }}
       />
@@ -52,9 +52,9 @@ export default function TabNavigator() {
         options={{
           tabBarIcon: ({color, size, focused}) =>
             focused ? (
-              <Icon name="person" size={35} color={color} />
+              <Icon name="person" size={size} color={color} />
             ) : (
-              <Icon name="person-outline" size={35} color={color} />
+              <Icon name="person-outline" size={size} color={color} />
             ),
         }}
       />

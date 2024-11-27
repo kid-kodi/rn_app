@@ -9,9 +9,9 @@ import {
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import MyImage from './MyImage';
-import Colors from '../assets/styles/Colors';
-import FontFamily from '../assets/styles/FontFamily';
-import {textScale} from '../assets/styles/ResponsiveSize';
+import Colors from '../constants/Colors';
+import FontFamily from '../constants/FontFamily';
+import { textScale } from '../styles/ResponsiveSize';
 
 const imageSize = 50;
 

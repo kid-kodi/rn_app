@@ -103,3 +103,7 @@ Maintainability: Each folder has a single responsibility.
 Readability: The structure mirrors the flow of a React Native app.
 
 We will use textflow for sms api on node
+
+
+"react-native-safe-area-context": "^4.10.4",
+"react-native-screens": "^3.32.0",

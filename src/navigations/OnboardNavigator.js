@@ -11,12 +11,20 @@ export default function(Stack) {
         component={Screens.Splash}
       />
       <Stack.Screen
+        name={NavigationString.INITIAL_SCREEN}
+        component={Screens.Initial}
+      />
+      <Stack.Screen
         name={NavigationString.WELCOME_SCREEN}
         component={Screens.Welcome}
       />
       <Stack.Screen
         name={NavigationString.SIGNUP_SCREEN}
         component={Screens.Signup}
+      />
+      <Stack.Screen
+        name={NavigationString.LOGIN_SCREEN}
+        component={Screens.Login}
       />
       <Stack.Screen
         name={NavigationString.VERIFY_CODE_SCREEN}

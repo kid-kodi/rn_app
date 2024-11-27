@@ -30,7 +30,10 @@ export default function WelcomeScreen({navigation}) {
           {t('READ_OUR')}
           <Text style={{color: Colors.blueLight}}> {t('PRIVACY_POLICY')}</Text>
           {t('TAP_AGREE_AND_CONTINUE_TO_ACCEEPT_THE')}
-          <Text style={{color: Colors.blueLight}}> {t('TERMS_OF_SERVICE')}</Text>
+          <Text style={{color: Colors.blueLight}}>
+            {' '}
+            {t('TERMS_OF_SERVICE')}
+          </Text>
         </Text>
 
         <TouchableOpacity
@@ -52,15 +55,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logoStyle: {
-    width: width / 1.5,
-    height: height / 2,
-    alignSelf: 'center',
+    width: moderateScale(150),
+    height: moderateScale(150),
+    borderRadius: moderateScale(150 / 2),
   },
   headingStyle: {
     fontSize: textScale(32),
     fontFamily: FontFamily.bold,
     alignSelf: 'center',
-    fontWeight:"bold"
+    fontWeight: 'bold',
   },
   descStyle: {
     fontSize: textScale(16),
@@ -71,7 +74,7 @@ const styles = StyleSheet.create({
   agreeStyle: {
     fontSize: textScale(22),
     fontFamily: FontFamily.bold,
-    fontWeight:"bold",
+    fontWeight: 'bold',
     marginTop: moderateScaleVertical(32),
     color: Colors.blueLight,
     alignSelf: 'center',
