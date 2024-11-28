@@ -14,7 +14,6 @@ import {showError} from '../../helpers/Utils';
 import MessageViewer from '../../components/MessageViewer';
 import {BASE_API_URL} from '@env';
 import DataItem from '../../components/DataItem';
-import EmojiPicker from 'react-native-emoji-picker';
 import NavigationString from '../../constants/NavigationString';
 
 export default function ChatScreen({navigation, route}) {
@@ -165,7 +164,7 @@ export default function ChatScreen({navigation, route}) {
       chatId,
     });
   };
-  
+
   const onVideoCall = () => {
     navigation.navigate(NavigationString.CALL_SCREEN, {
       audio: true,
@@ -233,7 +232,11 @@ export default function ChatScreen({navigation, route}) {
               <Icon name="send" size={20} color="#fff" />
             </TouchableOpacity>
           )}
-          {showEmojiPicker && <EmojiPicker onEmojiSelected={handlePickEmoji} />}
+          {showEmojiPicker && (
+            <View>
+              <Text>Emoji picker</Text>
+            </View>
+          )}
           {isRecording && (
             <View>
               <Text>Audio Recording</Text>

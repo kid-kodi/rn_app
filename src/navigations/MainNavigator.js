@@ -28,6 +28,14 @@ export default function(Stack) {
         name={NavigationString.CALL_SCREEN}
         component={Screens.Call}
       />
+      <Stack.Screen
+        name={NavigationString.EDIT_PROFILE_SCREEN}
+        component={Screens.EditProfile}
+      />
+      <Stack.Screen
+        name={NavigationString.SETTING_SCREEN}
+        component={Screens.Setting}
+      />
     </>
   )
 }

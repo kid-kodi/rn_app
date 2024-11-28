@@ -13,6 +13,8 @@ export default {
     CHATS_SCREEN:"chatsScreen",
     USER_LIST_SCREEN:"userListScreen",
     PROFILE_SCREEN:"profileScreen",
+    EDIT_PROFILE_SCREEN:"editProfileScreen",
+    SETTING_SCREEN:"settingScreen",
     NEW_CHAT_SCREEN:"newChatScreen",
     NEW_GROUP_SCREEN:"newGroupScreen",
     CHAT_SCREEN:"chatScreen",

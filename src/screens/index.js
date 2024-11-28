@@ -15,3 +15,5 @@ export {default as NewChat} from './NewChat/NewChatScreen';
 export {default as NewGroup} from './NewGroup/NewGroupScreen';
 export {default as Chat} from './Chat/ChatScreen';
 export {default as Call} from './Call/CallScreen';
+export {default as EditProfile} from './EditProfile/EditProfileScreen';
+export {default as Setting} from './Setting/SettingScreen';

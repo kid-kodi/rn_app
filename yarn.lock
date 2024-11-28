@@ -5123,13 +5123,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"emoji-datasource@npm:^2.4.4":
-  version: 2.4.4
-  resolution: "emoji-datasource@npm:2.4.4"
-  checksum: c6389580aae4db2dbbae0375733e0af7a5d1935f7a1554f3213fecc247b03ee89b182e275f20ac8bb5cf9877f9b7205f324ea0da89573ddde6a162e20f68d646
-  languageName: node
-  linkType: hard
-
 "emoji-regex@npm:^8.0.0":
   version: 8.0.0
   resolution: "emoji-regex@npm:8.0.0"
@@ -6503,15 +6496,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hyochan-welcome@npm:^1.0.0":
-  version: 1.0.1
-  resolution: "hyochan-welcome@npm:1.0.1"
-  bin:
-    hyochan-welcome: bin/hello.js
-  checksum: 2ea7093b54eefcde4c65e4a8ffd3f3926a55ff0bce20a3f5142fe1108e76c0dfcb98517b47714c536f9de8302b92ae02bf240891d3114d527ccd497e2ea9478e
-  languageName: node
-  linkType: hard
-
 "i18next@npm:^23.16.6":
   version: 23.16.8
   resolution: "i18next@npm:23.16.8"
@@ -7866,7 +7850,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.11.1, lodash@npm:^4.17.15, lodash@npm:^4.17.21":
+"lodash@npm:^4.17.15, lodash@npm:^4.17.21":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: eb835a2e51d381e561e508ce932ea50a8e5a68f4ebdd771ea240d3048244a8d13658acbd502cd4829768c56f2e16bdd4340b9ea141297d472517b83868e677f7
@@ -9333,18 +9317,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-audio-recorder-player@npm:^3.6.12":
-  version: 3.6.12
-  resolution: "react-native-audio-recorder-player@npm:3.6.12"
-  dependencies:
-    hyochan-welcome: ^1.0.0
-  peerDependencies:
-    react: "*"
-    react-native: "*"
-  checksum: a0c74694fe54eacd8f705b38d77d8ee35ddb9e964243ac0a727483d001e7ad24178b5ed3edcb0b4ddccf87d65af3233a823d5dd73fc98099ddbe0602134586e7
-  languageName: node
-  linkType: hard
-
 "react-native-document-picker@npm:^5.2.0":
   version: 5.3.0
   resolution: "react-native-document-picker@npm:5.3.0"
@@ -9385,17 +9357,6 @@ __metadata:
     react-native-safe-area-context: ">= 3.0.0"
     react-native-vector-icons: ">7.0.0"
   checksum: e055c18b85527366d7b9e76139828fe3d006a7a8c11f81b165e43b4175c0d4b15eef6308679dd596d33f0813a512c27cb993d6ca49e00c56fcb15a0918d96c6c
-  languageName: node
-  linkType: hard
-
-"react-native-emoji-picker@npm:^0.2.2":
-  version: 0.2.2
-  resolution: "react-native-emoji-picker@npm:0.2.2"
-  dependencies:
-    emoji-datasource: ^2.4.4
-    lodash: ^4.11.1
-    string.fromcodepoint: ^0.2.1
-  checksum: e1bdac1f3510d995f6a76e7002f016bf1388bd173a8f65493df0faed58d615a9ce53185d75b00760ed2f88b45b3119306108624c13923201d63a9372265499e3
   languageName: node
   linkType: hard
 
@@ -10541,13 +10502,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"string.fromcodepoint@npm:^0.2.1":
-  version: 0.2.1
-  resolution: "string.fromcodepoint@npm:0.2.1"
-  checksum: 6ba80f70c3e2a36dab87f5d68168936403295a73838564e701f5c861d397d77d9e97b0e2aa0f3c163a25a96c785dcc2145452b220753fb7b3e6c6fe431c9c411
-  languageName: node
-  linkType: hard
-
 "string.prototype.matchall@npm:^4.0.11":
   version: 4.0.11
   resolution: "string.prototype.matchall@npm:4.0.11"
@@ -10784,11 +10738,9 @@ __metadata:
     react: 18.2.0
     react-i18next: ^15.1.1
     react-native: 0.74.1
-    react-native-audio-recorder-player: ^3.6.12
     react-native-document-picker: ^5.2.0
     react-native-dotenv: ^3.4.11
     react-native-elements: ^3.4.3
-    react-native-emoji-picker: ^0.2.2
     react-native-fast-image: ^8.6.3
     react-native-file-viewer: ^2.1.5
     react-native-flash-message: ^0.4.2

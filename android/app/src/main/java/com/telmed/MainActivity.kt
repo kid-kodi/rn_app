@@ -1,6 +1,5 @@
 package com.telmed
 
-import com.dooboolab.audiorecorderplayer.RNAudioRecorderPlayerPackage;
 
 import android.os.Bundle;
 import com.facebook.react.ReactActivity

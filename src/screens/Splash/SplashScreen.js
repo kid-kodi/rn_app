@@ -1,4 +1,4 @@
-import {Image, StyleSheet, View} from 'react-native';
+import {Alert, Image, StyleSheet, View} from 'react-native';
 import React, {useEffect} from 'react';
 import Screen from '../../components/Screen';
 import {height, moderateScale, width} from '../../styles/ResponsiveSize';
