@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {
   View,
-  Button,
   Text,
   StyleSheet,
   PermissionsAndroid,
@@ -11,8 +10,11 @@ import {
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import RNFetchBlob from 'rn-fetch-blob';
 import {moderateScale} from '../styles/ResponsiveSize';
+import {TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import Colors from '../constants/Colors';
 
-export default function AudioRecorder() {
+export default function AudioRecorder({onSend}) {
   const [isRecording, setIsRecording] = useState(false);
   const [recordedFilePath, setRecordedFilePath] = useState(null);
   const [recordTime, setRecordTime] = useState('00:00:00');
@@ -102,10 +104,58 @@ export default function AudioRecorder() {
     }
   };
 
+  const onStartPlay = async () => {
+    console.log('onStartPlay');
+    const msg = await audioRecorderPlayer.startPlayer();
+    console.log(msg);
+    audioRecorderPlayer.addPlayBackListener(e => {
+      setRecordTime(audioRecorderPlayer.mmssss(Math.floor(e.currentPosition)));
+      return;
+    });
+  };
+
+  const onPausePlay = async () => {
+    await audioRecorderPlayer.pausePlayer();
+  };
+
+  const onStopPlay = async () => {
+    console.log('onStopPlay');
+    audioRecorderPlayer.stopPlayer();
+    audioRecorderPlayer.removePlayBackListener();
+  };
+
   return (
-    <View style={styles.container}>
-      <Text>Record Time: {recordTime}</Text>
-      <Button
+    <>
+      {/* <Text>Record Time: {recordTime}</Text> */}
+      <TouchableOpacity
+        onPress={isRecording ? stopRecording : startRecording}
+        style={styles.iconButton}>
+        <Icon
+          name={isRecording ? 'stop' : 'mic'}
+          size={24}
+          color={isRecording ? 'red' : 'gray'}
+        />
+      </TouchableOpacity>
+      {isRecording && (
+        <View style={styles.container}>
+          <View style={styles.wrapper}>
+            <Text>Record Time: {recordTime}</Text>
+            <TouchableOpacity onPress={stopRecording} style={styles.iconButton}>
+              <Icon name={'stop'} size={24} color={'red'} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={onStartPlay} style={styles.iconButton}>
+              <Icon name={'play-circle'} size={24} color={'green'} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={onPausePlay} style={styles.iconButton}>
+              <Icon name={'pause-circle'} size={24} color={'gray'} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={onStopPlay} style={styles.iconButton}>
+              <Icon name={'stop-circle'} size={24} color={'red'} />
+            </TouchableOpacity>
+          </View>
+        </View>
+      )}
+      {/* <Button
         title={isRecording ? 'Stop Recording' : 'Start Recording'}
         onPress={isRecording ? stopRecording : startRecording}
       />
@@ -113,13 +163,29 @@ export default function AudioRecorder() {
         title="Send Audio"
         onPress={uploadAudio}
         disabled={!recordedFilePath}
-      />
-    </View>
+      /> */}
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: moderateScale(16),
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    zIndex: 10,
+    height: 60,
+    backgroundColor: Colors.whiteColor,
+    borderTopWidth: 1,
+    borderColor: Colors.blackOpacity12,
+  },
+  wrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: moderateScale(8),
+  },
+  iconButton: {
+    padding: 8,
   },
 });

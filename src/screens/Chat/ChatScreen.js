@@ -14,22 +14,22 @@ import {showError} from '../../helpers/Utils';
 import MessageViewer from '../../components/MessageViewer';
 import {BASE_API_URL} from '@env';
 import DataItem from '../../components/DataItem';
-import EmojiPicker from 'react-native-emoji-picker';
 import NavigationString from '../../constants/NavigationString';
+import ChatInput from './ChatInput';
 
 export default function ChatScreen({navigation, route}) {
   const chatId = route?.params?.chatId;
 
   const socket = useSocket();
   const {user} = useUser();
-  const {joinChat, createMessage, messages, chat, uploadFile, removeMessages} =
+  const {joinChat, createMessage, messages, chat, removeMessages} =
     useChat();
-  const [message, setMessage] = useState('');
+  // const [message, setMessage] = useState('');
 
   const [selectedItems, setSelectedItems] = useState([]);
   const [isMultiSelectMode, setMultiSelectMode] = useState(false);
-  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-  const [isRecording, setIsRecording] = useState(false);
+  // const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  // const [isRecording, setIsRecording] = useState(false);
 
   // Toggle selection of items
   const toggleSelection = item => {
@@ -77,43 +77,41 @@ export default function ChatScreen({navigation, route}) {
     setMultiSelectMode(false);
   };
 
-  const sendMessage = async () => {
-    if (message.trim() === '') return;
-    await createMessage(chatId, {content: message});
-    setMessage('');
+  const sendMessage = async msg_data => {
+    await createMessage(chatId, msg_data);
   };
 
-  const handlePickFile = async () => {
-    try {
-      const [picked] = await DocumentPicker.pick({
-        type: [DocumentPicker.types.allFiles],
-      });
+  // const handlePickFile = async () => {
+  //   try {
+  //     const [picked] = await DocumentPicker.pick({
+  //       type: [DocumentPicker.types.allFiles],
+  //     });
 
-      console.log(
-        `[Log]  File picked: URI: ${picked.uri}, Type: ${picked.type}, Name: ${picked.name}, Size: ${picked.size}`,
-      );
+  //     console.log(
+  //       `[Log]  File picked: URI: ${picked.uri}, Type: ${picked.type}, Name: ${picked.name}, Size: ${picked.size}`,
+  //     );
 
-      const response = await uploadFile({
-        fileName: picked.name.split('.')[0],
-        name: picked.name,
-        fileType: picked.type,
-        path: picked.uri,
-      });
+  //     const response = await uploadFile({
+  //       fileName: picked.name.split('.')[0],
+  //       name: picked.name,
+  //       fileType: picked.type,
+  //       path: picked.uri,
+  //     });
 
-      await createMessage(chatId, {
-        content: response.data.name,
-        file: response.data._id,
-        type: picked.type,
-      });
-    } catch (error) {
-      showError(error.message);
-    }
-  };
+  //     await createMessage(chatId, {
+  //       content: response.data.name,
+  //       file: response.data._id,
+  //       type: picked.type,
+  //     });
+  //   } catch (error) {
+  //     showError(error.message);
+  //   }
+  // };
 
-  const handlePickEmoji = emoji => {
-    setMessage(prevMessage => prevMessage + emoji);
-  };
-  const handleRecordAudio = () => {};
+  // const handlePickEmoji = emoji => {
+  //   setMessage(prevMessage => prevMessage + emoji);
+  // };
+  // const handleRecordAudio = () => {};
 
   const renderMessage = ({item}) => {
     const isMyMessage = item.sender._id === user._id;
@@ -165,7 +163,7 @@ export default function ChatScreen({navigation, route}) {
       chatId,
     });
   };
-  
+
   const onVideoCall = () => {
     navigation.navigate(NavigationString.CALL_SCREEN, {
       audio: true,
@@ -204,42 +202,47 @@ export default function ChatScreen({navigation, route}) {
       />
 
       {!isMultiSelectMode && (
-        <View style={styles.inputContainer}>
-          <TouchableOpacity onPress={handlePickFile} style={styles.roundButton}>
-            <Icon name="add-sharp" size={20} color={Colors.blackOpacity40} />
-          </TouchableOpacity>
-          <TextInput
-            style={styles.textInput}
-            placeholder="Type a message..."
-            value={message}
-            onChangeText={setMessage}
-          />
-          {message.length === 0 && (
-            <>
-              <TouchableOpacity
-                onPress={() => setIsRecording(!isRecording)}
-                style={styles.roundButton}>
-                <Icon name="mic" size={20} color={Colors.blackOpacity40} />
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => setShowEmojiPicker(!showEmojiPicker)}
-                style={styles.roundButton}>
-                <Icon name="happy" size={20} color={Colors.blackOpacity40} />
-              </TouchableOpacity>
-            </>
-          )}
-          {message.length > 0 && (
-            <TouchableOpacity onPress={sendMessage} style={styles.sendButton}>
-              <Icon name="send" size={20} color="#fff" />
-            </TouchableOpacity>
-          )}
-          {showEmojiPicker && <EmojiPicker onEmojiSelected={handlePickEmoji} />}
-          {isRecording && (
-            <View>
-              <Text>Audio Recording</Text>
-            </View>
-          )}
-        </View>
+        <ChatInput onSend={msg => sendMessage(msg)} />
+        // <View style={styles.inputContainer}>
+        //   <TouchableOpacity onPress={handlePickFile} style={styles.roundButton}>
+        //     <Icon name="add-sharp" size={20} color={Colors.blackOpacity40} />
+        //   </TouchableOpacity>
+        //   <TextInput
+        //     style={styles.textInput}
+        //     placeholder="Type a message..."
+        //     value={message}
+        //     onChangeText={setMessage}
+        //   />
+        //   {message.length === 0 && (
+        //     <>
+        //       <TouchableOpacity
+        //         onPress={() => setIsRecording(!isRecording)}
+        //         style={styles.roundButton}>
+        //         <Icon name="mic" size={20} color={Colors.blackOpacity40} />
+        //       </TouchableOpacity>
+        //       <TouchableOpacity
+        //         onPress={() => setShowEmojiPicker(!showEmojiPicker)}
+        //         style={styles.roundButton}>
+        //         <Icon name="happy" size={20} color={Colors.blackOpacity40} />
+        //       </TouchableOpacity>
+        //     </>
+        //   )}
+        //   {message.length > 0 && (
+        //     <TouchableOpacity onPress={sendMessage} style={styles.sendButton}>
+        //       <Icon name="send" size={20} color="#fff" />
+        //     </TouchableOpacity>
+        //   )}
+        //   {showEmojiPicker && (
+        //     <View>
+        //       <Text>Emoji Picker</Text>
+        //     </View>
+        //   )}
+        //   {isRecording && (
+        //     <View>
+        //       <Text>Audio Recording</Text>
+        //     </View>
+        //   )}
+        // </View>
       )}
 
       {/* Action Buttons */}

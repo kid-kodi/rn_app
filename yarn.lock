@@ -4297,7 +4297,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"base-64@npm:^0.1.0":
+"base-64@npm:0.1.0, base-64@npm:^0.1.0":
   version: 0.1.0
   resolution: "base-64@npm:0.1.0"
   checksum: 5a42938f82372ab5392cbacc85a5a78115cbbd9dbef9f7540fa47d78763a3a8bd7d598475f0d92341f66285afd377509851a9bb5c67bbecb89686e9255d5b3eb
@@ -5120,13 +5120,6 @@ __metadata:
   version: 0.13.1
   resolution: "emittery@npm:0.13.1"
   checksum: 2b089ab6306f38feaabf4f6f02792f9ec85fc054fda79f44f6790e61bbf6bc4e1616afb9b232e0c5ec5289a8a452f79bfa6d905a6fd64e94b49981f0934001c6
-  languageName: node
-  linkType: hard
-
-"emoji-datasource@npm:^2.4.4":
-  version: 2.4.4
-  resolution: "emoji-datasource@npm:2.4.4"
-  checksum: c6389580aae4db2dbbae0375733e0af7a5d1935f7a1554f3213fecc247b03ee89b182e275f20ac8bb5cf9877f9b7205f324ea0da89573ddde6a162e20f68d646
   languageName: node
   linkType: hard
 
@@ -6222,6 +6215,20 @@ __metadata:
   dependencies:
     is-glob: ^4.0.3
   checksum: c13ee97978bef4f55106b71e66428eb1512e71a7466ba49025fc2aec59a5bfb0954d5abd58fc5ee6c9b076eef4e1f6d3375c2e964b88466ca390da4419a786a8
+  languageName: node
+  linkType: hard
+
+"glob@npm:7.0.6":
+  version: 7.0.6
+  resolution: "glob@npm:7.0.6"
+  dependencies:
+    fs.realpath: ^1.0.0
+    inflight: ^1.0.4
+    inherits: 2
+    minimatch: ^3.0.2
+    once: ^1.3.0
+    path-is-absolute: ^1.0.0
+  checksum: 6ad065f51982f9a76f7052984121c95bca376ea02060b21200ad62b400422b05f0dc331f72da89a73c21a2451cbe9bec16bb17dcf37a516dc51bbbb6efe462a1
   languageName: node
   linkType: hard
 
@@ -7866,7 +7873,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.11.1, lodash@npm:^4.17.15, lodash@npm:^4.17.21":
+"lodash@npm:^4.17.15, lodash@npm:^4.17.21":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: eb835a2e51d381e561e508ce932ea50a8e5a68f4ebdd771ea240d3048244a8d13658acbd502cd4829768c56f2e16bdd4340b9ea141297d472517b83868e677f7
@@ -9388,17 +9395,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-emoji-picker@npm:^0.2.2":
-  version: 0.2.2
-  resolution: "react-native-emoji-picker@npm:0.2.2"
-  dependencies:
-    emoji-datasource: ^2.4.4
-    lodash: ^4.11.1
-    string.fromcodepoint: ^0.2.1
-  checksum: e1bdac1f3510d995f6a76e7002f016bf1388bd173a8f65493df0faed58d615a9ce53185d75b00760ed2f88b45b3119306108624c13923201d63a9372265499e3
-  languageName: node
-  linkType: hard
-
 "react-native-fast-image@npm:^8.6.3":
   version: 8.6.3
   resolution: "react-native-fast-image@npm:8.6.3"
@@ -9514,6 +9510,20 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 8527954918677d196485562ca59e4e031f5bb3da6b91f397b8f045ce40f55e81d7840c35b63de79d930e3e0a48beef045ae1c00ac565d8fba34371516e4d374b
+  languageName: node
+  linkType: hard
+
+"react-native-permissions@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "react-native-permissions@npm:5.2.0"
+  peerDependencies:
+    react: ">=18.1.0"
+    react-native: ">=0.70.0"
+    react-native-windows: ">=0.70.0"
+  peerDependenciesMeta:
+    react-native-windows:
+      optional: true
+  checksum: e1cbc4e5cac032e490ba2d3597b85d169693047785196eca1f56377d775690f7940dbaf81196255a3775a2c0bf8e5cb2c0b808679f014622b76c0b7753452001
   languageName: node
   linkType: hard
 
@@ -10025,6 +10035,26 @@ __metadata:
   bin:
     rimraf: ./bin.js
   checksum: 3ea587b981a19016297edb96d1ffe48af7e6af69660e3b371dbfc73722a73a0b0e9be5c88089fbeeb866c389c1098e07f64929c7414290504b855f54f901ab10
+  languageName: node
+  linkType: hard
+
+"rn-emoji-keyboard@npm:^1.7.0":
+  version: 1.7.0
+  resolution: "rn-emoji-keyboard@npm:1.7.0"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: a949b72b40358561c8c95a878aa873fb4186540c39980ca2087b43022303f807b4481563049e2d414b6de4fefeb19d91cf470d49332d4e075824641e7c3702da
+  languageName: node
+  linkType: hard
+
+"rn-fetch-blob@npm:^0.12.0":
+  version: 0.12.0
+  resolution: "rn-fetch-blob@npm:0.12.0"
+  dependencies:
+    base-64: 0.1.0
+    glob: 7.0.6
+  checksum: 56e5832be583e97d58f955c0c4f6dcb0eb62c97dde331182c6effb726253731cb555d4a5f6c81079ed2fcb957f81633cbe95b37d326d063405f912506de20ff4
   languageName: node
   linkType: hard
 
@@ -10541,13 +10571,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"string.fromcodepoint@npm:^0.2.1":
-  version: 0.2.1
-  resolution: "string.fromcodepoint@npm:0.2.1"
-  checksum: 6ba80f70c3e2a36dab87f5d68168936403295a73838564e701f5c861d397d77d9e97b0e2aa0f3c163a25a96c785dcc2145452b220753fb7b3e6c6fe431c9c411
-  languageName: node
-  linkType: hard
-
 "string.prototype.matchall@npm:^4.0.11":
   version: 4.0.11
   resolution: "string.prototype.matchall@npm:4.0.11"
@@ -10788,7 +10811,6 @@ __metadata:
     react-native-document-picker: ^5.2.0
     react-native-dotenv: ^3.4.11
     react-native-elements: ^3.4.3
-    react-native-emoji-picker: ^0.2.2
     react-native-fast-image: ^8.6.3
     react-native-file-viewer: ^2.1.5
     react-native-flash-message: ^0.4.2
@@ -10798,6 +10820,7 @@ __metadata:
     react-native-modal: ^13.0.1
     react-native-orientation-locker: ^1.7.0
     react-native-otp-textinput: ^1.1.6
+    react-native-permissions: ^5.2.0
     react-native-safe-area-context: ^4.14.0
     react-native-screens: ^4.3.0
     react-native-share: ^12.0.1
@@ -10809,6 +10832,8 @@ __metadata:
     react-native-video: ^6.8.2
     react-native-webrtc: ^124.0.1
     react-test-renderer: 18.2.0
+    rn-emoji-keyboard: ^1.7.0
+    rn-fetch-blob: ^0.12.0
     socket.io-client: ^4.7.5
     typescript: 5.0.4
     yup: ^1.4.0
